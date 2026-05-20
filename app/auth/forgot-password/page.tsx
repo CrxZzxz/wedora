@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 import AuthBackground from "@/components/auth/AuthBackground";
 import AuthInput from "@/components/auth/AuthInput";
@@ -11,7 +12,11 @@ export default function ForgotPasswordPage() {
 
   const router = useRouter();
 
+  const [email, setEmail] = useState("");
+
   const handleContinue = () => {
+
+    if (!email) return;
 
     router.push("/otp-verification");
 
@@ -74,6 +79,8 @@ export default function ForgotPasswordPage() {
           <AuthInput
             placeholder="Email address"
             type="email"
+            value={email}
+            onChange={setEmail}
           />
 
         </div>
